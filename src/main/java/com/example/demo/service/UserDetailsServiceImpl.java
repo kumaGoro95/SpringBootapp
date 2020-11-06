@@ -24,20 +24,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private final SiteUserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		SiteUser user =  userRepository.findByUsername(username);
+	public UserDetails loadUserByUsername(String user_name) throws UsernameNotFoundException{
+		SiteUser user =  userRepository.findByUser_name(user_name);
 		if(user == null) {
 			//ユーザーが見つからなければ、SpringSecurityの以下の例外をthrowする。
-			throw new UsernameNotFoundException(username + " not found");
+			throw new UsernameNotFoundException(user_name + " not found");
 		}
 		return createUserDetails(user);
 	}
 	
 	public User createUserDetails(SiteUser user) {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>(); //HashSet・・・１つのオブジェクトを格納する
-		//頭に「ROLE_」を付けた文字列を渡す
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 		
-		return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+		return new User(user.getUser_name(), user.getUser_password(), grantedAuthorities);
 	}
 }

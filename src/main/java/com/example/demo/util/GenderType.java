@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Type {
+public class GenderType {
 	public static final Map<Integer, String> GENDERS;
 	static {
 		//Map<キーのクラス,値のクラス>

@@ -6,8 +6,8 @@ import com.example.demo.model.SiteUser;
 
 public interface SiteUserRepository extends JpaRepository<SiteUser, Long> {
 	//usernameでユーザーを検索
-	SiteUser findByUsername(String username);
+	SiteUser findByUser_name(String user_name);
 	//同名のユーザーが存在するか判定
-	boolean existsByUsername(String username);
+	boolean existsByUser_name(String user_name);
 
 }

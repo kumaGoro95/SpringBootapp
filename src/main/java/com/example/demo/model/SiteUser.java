@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,25 +13,22 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name="users")
 public class SiteUser {
 	
 	@Id //主キー
 	//DBのidentity列を使用して、キーを自動採番(strategyが無いとautoになる)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long id;
+	private long id;
 	
+	@NotBlank
 	@Size(min = 2, max = 20)
-	private String username;
-	
-	@Size(min = 4, max = 255)
-	private String password;
+	private String user_name;
 	
 	@NotBlank
 	@Email
-	private String email;
+	private String user_email;
 	
-	private int gender;
-	private boolean admin;
-	private String role;
-	private boolean active = true;
+	@Size(min = 4, max = 255)
+	private String user_password;
 }
